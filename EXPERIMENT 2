@@ -1,0 +1,41 @@
+Aim:To find the index of the target element in a sorted array. If the target is not present, return the index where it should be inserted while maintaining the sorted order using Binary Search.
+
+Algorithm:
+Start
+1 Initialize low = 0 and high = n - 1.
+2 Repeat until low <= high:
+3 Calculate the middle index:
+ mid = low + (high - low) / 2;
+ If nums[mid] == target, return mid.
+ Else if nums[mid] < target, set low = mid + 1.
+ Otherwise, set high = mid - 1.
+ If the target is not found, return low as the insertion index.
+ Stop.
+
+Code:
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+
+        int low = 0;
+        int high = nums.size() - 1;
+
+        while (low <= high) {
+
+            int mid = low + (high - low) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            }
+            else if (nums[mid] < target) {
+                low = mid + 1;
+            }
+            else {
+                high = mid - 1;
+            }
+        }
+
+        return low;
+    }
+};
+
