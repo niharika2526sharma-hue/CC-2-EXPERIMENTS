@@ -1,3 +1,4 @@
+EXPERIMENT 2.1
 Aim:To find the index of the target element in a sorted array. If the target is not present, return the index where it should be inserted while maintaining the sorted order using Binary Search.
 
 Algorithm:
@@ -36,6 +37,75 @@ public:
         }
 
         return low;
+    }
+};
+
+
+EXPERIMENT 2.2
+AIM
+To implement a Queue using two Stacks while maintaining FIFO (First In First Out) order.
+
+ALGORITHM
+Create two stacks s1 and s2.
+
+To insert an element, push it into s1.
+
+To remove an element:
+
+If s2 is empty, transfer all elements from s1 to s2.
+
+Pop the top element from s2.
+
+To get the front element:
+
+If s2 is empty, transfer all elements from s1 to s2.
+
+Return the top element of s2.
+
+To check whether the queue is empty:
+
+If both s1 and s2 are empty, return true; otherwise, return false.
+
+C++ Code
+C++
+
+class MyQueue {
+public:
+    stack<int> s1, s2;
+
+    MyQueue() {
+    }
+
+    void push(int x) {
+        s1.push(x);
+    }
+
+    int pop() {
+        if (s2.empty()) {
+            while (!s1.empty()) {
+                s2.push(s1.top());
+                s1.pop();
+            }
+        }
+
+        int front = s2.top();
+        s2.pop();
+        return front;
+    }
+
+    int peek() {
+        if (s2.empty()) {
+            while (!s1.empty()) {
+                s2.push(s1.top());
+                s1.pop();
+            }
+        }
+
+        return s2.top();
+    }
+
+    bool empty() {
+        return s1.empty() && s2.empty();
     }
 };
 
